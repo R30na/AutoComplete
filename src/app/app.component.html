@@ -1,4 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!-- The content below is only a placeholder and can be replaced.
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -16,6 +16,24 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
+</ul> -->
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">Auto Complete with Angular</h1>
+    <p class="lead">This is a simple Autocomplete component in Angular, Fetching from public API</p>
+    <hr class="my-4">
+    <p>It uses Angular 5 & Bootstrap 4</p>
+    <!-- <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p> -->
+  </div>
 
-<router-outlet></router-outlet>
+  <div class="row mainbox">
+    <div class="col-md-3 ">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9 ">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
