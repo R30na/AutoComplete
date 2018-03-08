@@ -10,13 +10,13 @@ export class HttpService {
 
   public objectName: string;
   public baseUrl:string = Config.getUrl();
-  public http:HttpClient
+  public http:HttpClient;
 
   constructor() { }
 
 
   httpGet(objectsuffix: string){
-    return this.http.get(this.baseUrl+this.objectName+objectsuffix).map(res => res.json())
+    return this.http.get(this.baseUrl+this.objectName+objectsuffix).map(res => res)
   }
 
 }

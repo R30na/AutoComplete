@@ -4,12 +4,13 @@
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-3 col-form-label">Search Term</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          <input type="email" class="form-control" id="inputEmail3" placeholder="Search Term" (keyup)="suggest(search)" [(ngModel)]=search name="search">
         </div>
       </div>
-      <div class="list-group">
-        <a class="list-group-item list-group-item-action">Cras justo odio</a>
+      <div class="list-group" *ngIf="repos" style="height:50vh;overflow-y:scroll;">
+        <a class="list-group-item list-group-item-action" *ngFor="let repo of repos">{{repo.name}}</a>
       </div>
+
     </form>
   </div>
 </div>

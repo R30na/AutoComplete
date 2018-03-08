@@ -1,21 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ServiceBaseService } from '../service-base.service';
+import { BaseService } from '../base.service';
+
 
 @Injectable()
-export class SearchService extends ServiceBaseService {
+export class SearchService extends BaseService {
 
 
-  constructor() {
+  constructor(public http:HttpClient) {
     super();
-    this.objectName = 'users';
+    this.objectName = 'search/repositories';
    }
 
-   getOneSearch(id){
-    return this.getService('/' + id)
+   getOneSearch(term){
+    return this.getService('?q=' + term)
   }
 
    getAllSearches(){
-    return this.getService('')
+    return this.getService('');
   }
 
 }
