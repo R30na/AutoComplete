@@ -2,7 +2,8 @@ import { Repository } from './../../../models/repository';
 
 import { SearchService } from './../../../services/search/search.service';
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
+declare var jQuery:any;
 
 @Component({
   selector: 'app-search',
@@ -12,10 +13,13 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
 
   private repos: Array<Repository>;
+  private repository:Repository;
   private search: string;
+  private mode:string='search';
 
   constructor(private searchService: SearchService) { }
 
+  
   ngOnInit() {
 
   }
@@ -27,11 +31,20 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  suggest(search) {
-    // console.log(search.length);
+  getSearch(search) {
     if(search.length > 3){
       this.getRepositories(search);
+
+    } else {
+      this.repos = [];
     }
+  }
+
+  getOwner(search){
+    console.log(search);
+    this.mode = 'card';
+    this.search = ''
+    this.repository = search;
   }
 
 }

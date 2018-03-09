@@ -1,16 +1,34 @@
 <div class="card p-5 mainbox">
-  <div class="card-block" padding>
+  <div class="card-block">
     <form>
-      <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-3 col-form-label">Search Term</label>
-        <div class="col-sm-9">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Search Term" (keyup)="suggest(search)" [(ngModel)]=search name="search">
+      <div class="form-group row" *ngIf="mode == 'search'">
+        <label class="col-sm-5 col-form-label">Search For a GitHub Repository</label>
+        <div class="col-sm-7">
+          <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Search Term" (keyup)="suggest(search)" [(ngModel)]=search name="search"> -->
+          <p-autoComplete [(ngModel)]="search" name="search" [suggestions]="repos" field="name" (completeMethod)="getSearch(search)"
+            size="40" emptyMessage="There is no Results for your search" (onSelect)="getOwner(search)" ></p-autoComplete>
         </div>
       </div>
-      <div class="list-group" *ngIf="repos" style="height:50vh;overflow-y:scroll;">
-        <a class="list-group-item list-group-item-action" *ngFor="let repo of repos">{{repo.name}}</a>
-      </div>
-
     </form>
+
+    <div class="col-md-12 text-center" *ngIf="mode == 'card'">
+      <p-card title="{{repository.owner.login}}" subtitle="{{repository.name}}" [style]="{width: '100%',height: '50vh'}" styleClass="ui-card-shadow">
+        <p-header>
+          <a href="{{repository.html_url}}" target="_blank">
+            <img [src]="repository.owner.avatar_url" style="width:50%;height:20vh">
+          </a>
+        </p-header>
+        <div class="row">
+          <div class="col-sm-6 text-right">This Repository is created at:</div>
+          <div class="col-sm-6 text-left">{{repository.created_at}}</div>
+        </div>
+      </p-card>
+
+      <br>
+
+      <div class="col-md-12 p-1">
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="mode = 'search'">BACK TO SEARCH</button>
+      </div>
+    </div>
   </div>
 </div>
