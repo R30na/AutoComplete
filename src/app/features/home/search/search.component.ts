@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   private repos: Array<Repository>;
   private repository:Repository;
   private search: string;
-  private mode:string='search';
+  public mode:string='search';
 
   constructor(private searchService: SearchService) { }
 
