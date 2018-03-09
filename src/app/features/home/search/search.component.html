@@ -2,11 +2,11 @@
   <div class="card-block">
     <form>
       <div class="form-group row" *ngIf="mode == 'search'">
-        <label class="col-sm-5 col-form-label">Search For a GitHub Repository</label>
-        <div class="col-sm-7">
+        <label class="col-sm-5 col-form-label text-center">Search For a GitHub Repository</label>
+        <div class="col-sm-7 text-center">
           <!-- <input type="email" class="form-control" id="inputEmail3" placeholder="Search Term" (keyup)="suggest(search)" [(ngModel)]=search name="search"> -->
           <p-autoComplete [(ngModel)]="search" name="search" [suggestions]="repos" field="name" (completeMethod)="getSearch(search)"
-            size="40" emptyMessage="There is no Results for your search" (onSelect)="getOwner(search)" ></p-autoComplete>
+            size="30" emptyMessage="There is no Results for your search" (onSelect)="getOwner(search)" ></p-autoComplete>
         </div>
       </div>
     </form>
