@@ -2,8 +2,7 @@ import { Repository } from './../../../models/repository';
 
 import { SearchService } from './../../../services/search/search.service';
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
-declare var jQuery:any;
+
 
 @Component({
   selector: 'app-search',
