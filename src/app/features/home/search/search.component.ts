@@ -1,7 +1,8 @@
 import { Repository } from './../../../models/repository';
-
 import { SearchService } from './../../../services/search/search.service';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -11,35 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  private repos: Array<Repository>;
-  private repository:Repository;
+  public repos: Array<Repository> = [];
+  private repository: Repository;
   private search: string;
-  public mode:string='search';
+  public mode: string = 'search';
 
   constructor(private searchService: SearchService) { }
 
-  
+
   ngOnInit() {
 
   }
 
-  getRepositories(term) {
-    this.searchService.getOneSearch(term).subscribe((res:any) => {
-      console.log(res.items);
-      this.repos = res.items;
-    })
-  }
-
   getSearch(search) {
-    if(search.length > 3){
-      this.getRepositories(search);
-
+    if (search.length > 3) {
+      this.searchService.getOneSearch(search).subscribe((res:any) =>{
+        this.repos = res.items;
+      });
     } else {
       this.repos = [];
     }
   }
 
-  getOwner(search){
+  getOwner(search) {
     console.log(search);
     this.mode = 'card';
     this.search = ''
